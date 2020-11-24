@@ -41,7 +41,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
@@ -246,9 +245,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 3) If so, update password
   user.password = req.body.password;
-  console.log(req.body.password);
   user.passwordConfirm = req.body.passwordConfirm;
-  console.log(req.body.password);
 
   await user.save();
   // User.findByIdAndUpdate will NOT work as intended!

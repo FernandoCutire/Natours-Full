@@ -40,7 +40,7 @@ if (userDataForm) {
     form.append('password', document.getElementById('password').value);
     form.append('photo', document.getElementById('photo').files[0]);
 
-    console.log(form);
+    // console.log(form);
 
     updateSettings(form, 'data');
   });

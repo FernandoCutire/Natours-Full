@@ -36,7 +36,6 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`public/img/tours/${req.body.imageCover}`);
-  console.log(req.body);
 
   // 2)
   req.body.images = [];
@@ -53,8 +52,6 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
       req.body.images.push(filename);
     })
   );
-
-  console.log(req.body);
 
   next();
 });
