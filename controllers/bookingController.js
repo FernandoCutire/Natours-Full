@@ -32,7 +32,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         quantity: 1,
       },
     ],
-    amount_total = tour.price * 100
+    amount_total: tour.price * 100,
   });
 
   // 3) Create session as response
