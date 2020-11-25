@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -25,6 +26,25 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL MIDDLEWARES
+// Implement CORS
+
+// Access-Control-Allow-Origin * (everything)
+app.use(cors());
+
+// api.natours.com front-end natours.com
+// app.use(
+//   cors({
+//     // Allows your api to some pages
+//     origin: 'https://www.natours.com',
+//   })
+// );
+
+// Options is just an HTTTP Method, like GET, POST, PATCH...
+app.options('*', cors());
+
+// Allows only in one route
+// app.options('/api/v1/tours/:id', cors());
+
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
